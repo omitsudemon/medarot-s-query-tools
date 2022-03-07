@@ -1,3 +1,7 @@
+"""
+@author Omitsu Demon
+"""
+
 import sqlite3, json
 
 heads_file = open('heads.json', encoding="utf8")
