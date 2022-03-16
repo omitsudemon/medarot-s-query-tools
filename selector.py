@@ -3,26 +3,49 @@
 """
 
 import sqlite3, json
+import time
+
+start = time.time()
+
+meowcorp_file = open('meowcorp-medarot-list-inverted.json', encoding="utf8")
+meowcorp_data = json.load(meowcorp_file)
+print("Meowcorp medarot data: OK " + str(len(meowcorp_data)))
+
+npc_file = open('meowcorp-npc-medarot-list-inverted.json', encoding="utf8")
+npc_data = json.load(npc_file)
+npc_keys = npc_data.keys()
+print("Meowcorp npc data: OK " + str(len(npc_keys)))
 
 heads_file = open('heads.json', encoding="utf8")
 heads_data = json.load(heads_file)
+print("PRB heads data: OK")
 
 r_arms_file = open('right-arms.json', encoding="utf8")
 r_arms_data = json.load(r_arms_file)
+print("PRB rarms data: OK")
 
 l_arms_file = open('left-arms.json', encoding="utf8")
 l_arms_data = json.load(l_arms_file)
+print("PRB larms data: OK")
 
 legs_file = open('legs.json', encoding="utf8")
 legs_data = json.load(legs_file)
+print("PRB legs data: OK")
 
 connection = sqlite3.connect('medarot-s.db')
 cursor = connection.cursor()
+print("Database connection: OK")
 
-cursor.execute('drop table right_arm')
-cursor.execute('drop table left_arm')
-cursor.execute('drop table leg')
-cursor.execute('drop table head')
+#cursor.execute('drop table right_arm')
+#cursor.execute('drop table left_arm')
+#cursor.execute('drop table leg')
+#cursor.execute('drop table head')
+
+end = time.time()
+
+print("Data loaded in: ",)
+print(end-start)
+
 
 def createDB():
     cursor.execute(
@@ -40,7 +63,9 @@ def createDB():
             ability_type text,
             ability_name text,
             ability text,
-            rank_5 text
+            rank_5 text,
+            gender text,
+            obtaianble text
         )
         '''
     )
@@ -60,7 +85,9 @@ def createDB():
             ability_type text,
             ability_name text,
             ability text,
-            rank_5 text
+            rank_5 text,
+            gender text,
+            obtaianble text
         )
         '''
     )
@@ -80,7 +107,9 @@ def createDB():
             hv int,
             ability_name text,
             ability text,
-            rank_5 text
+            rank_5 text,
+            gender text,
+            obtaianble text
         )
         '''
     )
@@ -101,13 +130,15 @@ def createDB():
             ability_type text,
             ability_name text,
             ability text,
-            rank_5 text
+            rank_5 text,
+            gender text,
+            obtaianble text
         )
         '''
     )
     connection.commit()
 
-def insertRARMS():
+def insertRARMS(data):
     tuples = [
         (
         r_arm["Model"], 
@@ -122,8 +153,10 @@ def insertRARMS():
         r_arm["Ability Type"],
         r_arm["Ability Name"],
         r_arm["Description"], #Ability field replaced with description due to some noise in HTML data
-        r_arm["Rank 5"]
-        ) for r_arm in r_arms_data]
+        r_arm["Rank 5"],
+        meowcorp_data[r_arm["Model"]]["Gender"],
+        meowcorp_data[r_arm["Model"]]["Obtained from"]
+        ) for r_arm in data if r_arm["Model"] in meowcorp_data.keys()]
 
     cursor.executemany(
         '''INSERT INTO right_arm (
@@ -139,14 +172,16 @@ def insertRARMS():
             ability_type, 
             ability_name, 
             ability,
-            rank_5
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+            rank_5,
+            gender,
+            obtaianble
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
     )
     connection.commit()
 
-def insertLARMS():
+def insertLARMS(data):
     tuples = [
         (
         l_arm["Model"], 
@@ -161,8 +196,10 @@ def insertLARMS():
         l_arm["Ability Type"],
         l_arm["Ability Name"],
         l_arm["Ability"],
-        l_arm["Rank 5"]
-        ) for l_arm in l_arms_data]
+        l_arm["Rank 5"],
+        meowcorp_data[l_arm["Model"]]["Gender"],
+        meowcorp_data[l_arm["Model"]]["Obtained from"]
+        ) for l_arm in data if l_arm["Model"] in meowcorp_data.keys()]
 
     cursor.executemany(
         '''INSERT INTO left_arm (
@@ -178,14 +215,16 @@ def insertLARMS():
             ability_type, 
             ability_name, 
             ability, 
-            rank_5
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+            rank_5,
+            gender,
+            obtaianble
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
     )
     connection.commit()
 
-def insertLEGS():
+def insertLEGS(data):
     tuples = [
         (
         leg["Model"], 
@@ -200,8 +239,10 @@ def insertLEGS():
         leg["HV"],
         leg["Ability Name"],
         leg["Ability"],
-        leg["Rank 5"]
-        ) for leg in legs_data]
+        leg["Rank 5"],
+        meowcorp_data[leg["Model"]]["Gender"],
+        meowcorp_data[leg["Model"]]["Obtained from"]
+        ) for leg in data if leg["Model"] in meowcorp_data.keys()]
 
     cursor.executemany(
         '''INSERT INTO leg (
@@ -217,14 +258,16 @@ def insertLEGS():
             hv,
             ability_name,
             ability,
-            rank_5
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+            rank_5,
+            gender,
+            obtaianble
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
     )
     connection.commit()
 
-def insertHEADS():
+def insertHEADS(data):
     tuples = [
         (
         head["Model"], 
@@ -240,8 +283,10 @@ def insertHEADS():
         head["Ability Type"],
         head["Ability Name"],
         head["Ability"],
-        head["Rank 5"]
-        ) for head in heads_data]
+        head["Rank 5"],
+        meowcorp_data[head["Model"]]["Gender"],
+        meowcorp_data[head["Model"]]["Obtained from"]
+        ) for head in data if head["Model"] in meowcorp_data.keys()]
 
     cursor.executemany(
         '''INSERT INTO head (
@@ -258,40 +303,53 @@ def insertHEADS():
             ability_type,
             ability_name,
             ability,
-            rank_5
-            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            rank_5,
+            gender,
+            obtaianble
+            ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
     )
     connection.commit()
 
+
+
+def cleanData():
+    clean_h = []
+    clean_la = []
+    clean_ra = []
+    clean_l = []
+    print("Cleaning npc data...")
+    print("Original count: " + str(len(heads_data)))
+    for h in heads_data:
+        if h["Model"] not in npc_keys:
+            clean_h.append(h)
+    for la in l_arms_data:
+        if la["Model"] not in npc_keys:
+            clean_la.append(la)
+    for ra in r_arms_data:
+        if ra["Model"] not in npc_keys:
+            clean_ra.append(ra)
+    for l in legs_data:
+        if l["Model"] not in npc_keys:
+            clean_l.append(l)
+    print("Count after cleaning: " + str(len(clean_h)))
+    return [clean_h, clean_la, clean_ra, clean_l]
+
 def fillDB():
-    insertHEADS()
-    insertLARMS()
-    insertRARMS()
-    insertLEGS()
+    cleandata = cleanData()
+
+    heads_data = cleandata[0]
+    l_arms_data = cleandata[1]
+    r_arms_data = cleandata[2]
+    legs_data = cleandata[3]
+
+    insertHEADS(heads_data)
+    insertLARMS(l_arms_data)
+    insertRARMS(r_arms_data)
+    insertLEGS(legs_data)
 
 createDB()
 fillDB()
-
-def query1():
-    cursor.execute('''
-    SELECT MAX(power), MAX(armor), MAX(success), MAX(heating), MAX(cooldown), model FROM right_arm ORDER by model
-    ''')
-
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print(row)
-
-def query2():
-    cursor.execute('''
-    SELECT SUM(power, armor), MAX(success), MAX(heating), MAX(cooldown), model FROM right_arm ORDER by model
-    ''')
-
-    rows = cursor.fetchall()
-
-    for row in rows:
-        print(row)
 
 connection.close()
