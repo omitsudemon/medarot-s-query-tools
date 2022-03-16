@@ -1,4 +1,4 @@
-AGO00,,
+AGO00,M,N
 ALC00,,
 ALI03,,
 ALM00,,
