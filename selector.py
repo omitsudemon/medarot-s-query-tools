@@ -36,10 +36,10 @@ connection = sqlite3.connect('medarot-s.db')
 cursor = connection.cursor()
 print("Database connection: OK")
 
-#cursor.execute('drop table right_arm')
-#cursor.execute('drop table left_arm')
-#cursor.execute('drop table leg')
-#cursor.execute('drop table head')
+cursor.execute('drop table right_arm')
+cursor.execute('drop table left_arm')
+cursor.execute('drop table leg')
+cursor.execute('drop table head')
 
 end = time.time()
 
@@ -65,7 +65,7 @@ def createDB():
             ability text,
             rank_5 text,
             gender text,
-            obtaianble text
+            obtained text
         )
         '''
     )
@@ -87,7 +87,7 @@ def createDB():
             ability text,
             rank_5 text,
             gender text,
-            obtaianble text
+            obtained text
         )
         '''
     )
@@ -109,7 +109,7 @@ def createDB():
             ability text,
             rank_5 text,
             gender text,
-            obtaianble text
+            obtained text
         )
         '''
     )
@@ -132,7 +132,7 @@ def createDB():
             ability text,
             rank_5 text,
             gender text,
-            obtaianble text
+            obtained text
         )
         '''
     )
@@ -174,7 +174,7 @@ def insertRARMS(data):
             ability,
             rank_5,
             gender,
-            obtaianble
+            obtained
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
@@ -217,7 +217,7 @@ def insertLARMS(data):
             ability, 
             rank_5,
             gender,
-            obtaianble
+            obtained
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
@@ -260,7 +260,7 @@ def insertLEGS(data):
             ability,
             rank_5,
             gender,
-            obtaianble
+            obtained
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
@@ -305,7 +305,7 @@ def insertHEADS(data):
             ability,
             rank_5,
             gender,
-            obtaianble
+            obtained
             ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         '''
         , tuples
