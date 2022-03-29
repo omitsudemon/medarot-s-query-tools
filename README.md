@@ -15,6 +15,7 @@ https://github.com/omitsudemon/medarot-s-query-tools/raw/main/medarot-s.db
 
 # Want to contribute?
 This project is completely open-source and made for myself and the community, so if you like it and want to support me by either letting me know if there is an error in the data, or want to contribute with more features, it will be appreciated.
+You can contact me via email (omitsudemon@protonmail.com) or discord (Omitsu#3681).
 
 # Want to make queries?
 You might want to download the database and browse it with https://sqlitebrowser.org/ so you can make your own queries there without having to get into programming.
