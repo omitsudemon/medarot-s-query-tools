@@ -141,8 +141,8 @@ public class HeadsPanel extends JPanel {
 
 		JComboBox comboBox_atypes = new JComboBox();
 		comboBox_atypes.setBounds(157, 34, 159, 23);
-		for (int i = 0; i < Variables.abilityTypes.length; i++) {
-			comboBox_atypes.addItem(Variables.abilityTypes[i]);
+		for (int i = 0; i < Variables.headAbilityTypes.length; i++) {
+			comboBox_atypes.addItem(Variables.headAbilityTypes[i]);
 		}
 		comboBox_atypes.setSelectedItem(null);
 

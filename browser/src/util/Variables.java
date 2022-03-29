@@ -64,11 +64,20 @@ public class Variables {
 			"Vehicle"
 	};
 	
-	public static String[] abilityTypes = {
+	public static String[] headAbilityTypes = {
 			"Shooting",
 			"Melee",
 			"Support",
 			"Special",
+			"Healing",
+			"Defense",
+			"Plant/Trap"
+	};
+	
+	public static String[] abilityTypes = {
+			"Shooting",
+			"Melee",
+			"Support",
 			"Healing",
 			"Defense",
 			"Plant/Trap"

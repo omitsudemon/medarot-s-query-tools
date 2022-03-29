@@ -8,6 +8,8 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
 import java.awt.Canvas;
 import javax.swing.SwingConstants;
 import javax.swing.JLayeredPane;
@@ -53,7 +55,8 @@ import db.DbHandler;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JList;
 import nekohime.software.cl.Test;
-
+import java.awt.Font;
+import javax.swing.JTextArea;
 
 public class Window {
 
@@ -74,6 +77,16 @@ public class Window {
 				}
 			}
 		});
+	}
+
+	public String checkLocalDbPath() {
+
+		File db = new File("medarot-s.db");
+
+		if (db.canRead())
+			return "medarot-s.db";
+		else
+			return null;
 	}
 
 	public String getDbPath() {
@@ -141,10 +154,14 @@ public class Window {
 	 * Create the application.
 	 */
 	public Window() {
-		String dbpath = this.getDbPath();
-
+		String dbpath = this.checkLocalDbPath();
 		if (dbpath == null) {
-			dbpath = this.requestDbPath();
+			dbpath = this.getDbPath();
+			if (dbpath == null) {
+				JOptionPane.showMessageDialog(null,
+						"Please select the Medarot Database, \nyou can find it inside the project. \nThis will generate a file with the path \nand will be used as reference for\nthe next time you open this. \n                                                  Omitsu.");
+				dbpath = this.requestDbPath();
+			}
 		}
 
 		try {
@@ -157,15 +174,12 @@ public class Window {
 		initialize();
 	}
 
-	
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		//714
-		//948
+		frame.setTitle("Medarot S Parts Browser");
 		frame.setBounds(100, 100, 948, 714);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -174,27 +188,39 @@ public class Window {
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
 		JPanel panel = new JPanel();
-		panel.setToolTipText("Home");
-		
+		panel.setLayout(null);
 
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Window.class.getResource("/res/tinpet.png")));
-		panel.add(lblNewLabel_1);
-		tabbedPane.addTab("Home", null,panel, null);
+		JLabel lbl_medarot_tinpet = new JLabel("");
+		lbl_medarot_tinpet.setBounds(57, -26, 825, 824);
+		lbl_medarot_tinpet.setIcon(new ImageIcon(Window.class.getResource("/res/tinpet.png")));
+		panel.add(lbl_medarot_tinpet);
+		tabbedPane.addTab("Home", null, panel, null);
 		
+		JTextArea txtrSupBroYou = new JTextArea();
+		txtrSupBroYou.setLineWrap(true);
+		txtrSupBroYou.setWrapStyleWord(true);
+		txtrSupBroYou.setFont(new Font("Consolas", Font.BOLD, 14));
+		txtrSupBroYou.setBounds(634, 47, 253, 143);
+		txtrSupBroYou.setText("Sup bro, you can do some browsing here, if you find some bugs or errors in the data, feel free to notify Omitsu or make a pull request in the repository. I hope you enjoy the program!");
+		panel.add(txtrSupBroYou);
+		
+		JLabel lblNewLabel = new JLabel("Mr. Tinpet");
+		lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 16));
+		lblNewLabel.setBounds(634, 21, 120, 14);
+		panel.add(lblNewLabel);
+
 		HeadsPanel hp = new HeadsPanel(this.frame, this.db);
 		tabbedPane.addTab("Heads", null, hp, null);
-		
+
 		LArmsPanel lap = new LArmsPanel(this.frame, this.db);
 		tabbedPane.addTab("L.Arms", null, lap, null);
-		
+
 		RArmsPanel rap = new RArmsPanel(this.frame, this.db);
 		tabbedPane.addTab("R.Arms", null, rap, null);
 
 		LegsPanel lp = new LegsPanel(this.frame, this.db);
 		tabbedPane.addTab("Legs", null, lp, null);
-		
-		
+
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
 				Rectangle r = frame.getBounds();
@@ -205,7 +231,7 @@ public class Window {
 				lap.getScrollPane().setBounds(new_r);
 				rap.getScrollPane().setBounds(new_r);
 				lp.getScrollPane().setBounds(new_r);
-		    }
+			}
 		});
 	}
 }
