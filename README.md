@@ -8,7 +8,7 @@ https://github.com/omitsudemon/medarot-s-query-tools/raw/main/medabrowser.jar
 https://github.com/omitsudemon/medarot-s-query-tools/raw/main/medarot-s.db
 
 # How to use
-1) Open it. If you don't have Java installed, install it here https://www.java.com/en/download/
+1) Execute the medabrowser.jar file. If you don't have Java installed, install it here https://www.java.com/en/download/
 2) The program will look for the db, if it doesn't find the db, it will ask you for the file and save the path in a text file.
 3) You can now make queries that will appear in the table below.
 4) The queries are based on a stat sum (example: power + heating) so if no stat is selected, will be ordered by model.
