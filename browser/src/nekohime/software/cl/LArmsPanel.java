@@ -96,6 +96,14 @@ public class LArmsPanel extends JPanel {
 		chbx_cooldown.setBounds(120, 153, 97, 23);
 		this.add(chbx_cooldown);
 
+		JLabel lblNewLabel_1 = new JLabel("Results: ");
+		lblNewLabel_1.setBounds(34, 197, 75, 14);
+		add(lblNewLabel_1);
+		
+		JLabel lbl_results = new JLabel("");
+		lbl_results.setBounds(90, 197, 46, 14);
+		add(lbl_results);
+		
 		JCheckBox chbx_hv = new JCheckBox("HV");
 		chbx_hv.setBounds(120, 101, 97, 23);
 
@@ -261,6 +269,9 @@ public class LArmsPanel extends JPanel {
 
 		ArrayList<String> obtain_types = new ArrayList<>();
 		obtain_types.add("Start of game");
+		obtain_types.add("Gacha");
+		obtain_types.add("Fierce Robattle");
+		obtain_types.add("FP Gacha");
 
 		JCheckBox chckbx_startgame = new JCheckBox("Start of game");
 		chckbx_startgame.setSelected(true);
@@ -360,6 +371,10 @@ public class LArmsPanel extends JPanel {
 			}
 		});
 		this.add(chckbx_special);
+		
+		chckbx_gacha.setSelected(true);
+		chckbx_fiercerobattle.setSelected(true);
+		chckbx_fpgacha.setSelected(true);
 
 		// EXECUTE
 
@@ -383,6 +398,8 @@ public class LArmsPanel extends JPanel {
 					centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 					table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 					table.setColumnModel(tcm);
+					lbl_results.setText( ""+table.getRowCount() );
+
 
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

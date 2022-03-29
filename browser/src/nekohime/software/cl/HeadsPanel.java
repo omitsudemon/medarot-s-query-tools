@@ -99,6 +99,14 @@ public class HeadsPanel extends JPanel {
 		JCheckBox chbx_ammo = new JCheckBox("AMMO");
 		chbx_ammo.setBounds(120, 179, 97, 23);
 		this.add(chbx_ammo);
+		
+		JLabel lblNewLabel_1 = new JLabel("Results: ");
+		lblNewLabel_1.setBounds(34, 197, 75, 14);
+		add(lblNewLabel_1);
+		
+		JLabel lbl_results = new JLabel("");
+		lbl_results.setBounds(90, 197, 46, 14);
+		add(lbl_results);
 
 		JCheckBox chbx_hv = new JCheckBox("HV");
 		chbx_hv.setBounds(120, 101, 97, 23);
@@ -393,6 +401,7 @@ public class HeadsPanel extends JPanel {
 					centerRenderer.setHorizontalAlignment(JLabel.CENTER);
 					table.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
 					table.setColumnModel(tcm);
+					lbl_results.setText( ""+table.getRowCount() );
 
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block

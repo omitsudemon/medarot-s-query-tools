@@ -40,7 +40,6 @@ public class Variables {
 	public static String[] legs_columnNames = {
             "Model",
             "Name",
-            "Type",
             "Armor",
             "Anti Melee",
             "Anti Status",
@@ -48,12 +47,22 @@ public class Variables {
             "Base Speed",
             "HV",
             "Gender",
-            "Ability Type",
+            "Type",
             "Ability Name",
             "Ability Text",
             "Rank 5",
             "Obtained"
             };
+	
+	public static String[] legTypes = {
+			"Biped",
+			"Flight",
+			"Hover",
+			"Multiped",
+			"Sea",
+			"Tank",
+			"Vehicle"
+	};
 	
 	public static String[] abilityTypes = {
 			"Shooting",
@@ -74,7 +83,7 @@ public class Variables {
 	};
 	
 	public static int[] legsColumnSize = {
-			75,106,75,75,75,75,52,38,52,75,140,584,487,150
+			75,106,75,75,75,90,90,38,52,75,140,584,487,150
 	};
 	
 	public static String[] obtainedSource = {

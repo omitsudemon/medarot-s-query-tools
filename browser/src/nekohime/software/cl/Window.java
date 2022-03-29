@@ -52,6 +52,8 @@ import java.awt.event.ActionEvent;
 import db.DbHandler;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JList;
+import nekohime.software.cl.Test;
+
 
 public class Window {
 
@@ -162,7 +164,9 @@ public class Window {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 841, 627);
+		//714
+		//948
+		frame.setBounds(100, 100, 948, 714);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
@@ -187,20 +191,20 @@ public class Window {
 		RArmsPanel rap = new RArmsPanel(this.frame, this.db);
 		tabbedPane.addTab("R.Arms", null, rap, null);
 
-
-		JPanel panel_legs = new JPanel();
-		tabbedPane.addTab("Legs", null, panel_legs, null);
+		LegsPanel lp = new LegsPanel(this.frame, this.db);
+		tabbedPane.addTab("Legs", null, lp, null);
+		
 		
 		frame.addComponentListener(new ComponentAdapter() {
 			public void componentResized(ComponentEvent componentEvent) {
 				Rectangle r = frame.getBounds();
 				int h = r.height;
 				int w = r.width;
-				Rectangle new_r = new Rectangle(10, 228, w - 50 - 10, h - 50 - 228 - 5);
+				Rectangle new_r = new Rectangle(10, 228, w - 50 - 10, h - 50 - 228 - 5 - 50);
 				hp.getScrollPane().setBounds(new_r);
-				//hp.getScrollPane().setBounds(new_r);
-				//hp.getScrollPane().setBounds(new_r);
-				//hp.getScrollPane().setBounds(new_r);
+				lap.getScrollPane().setBounds(new_r);
+				rap.getScrollPane().setBounds(new_r);
+				lp.getScrollPane().setBounds(new_r);
 		    }
 		});
 	}
