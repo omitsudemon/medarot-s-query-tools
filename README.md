@@ -13,6 +13,11 @@ https://github.com/omitsudemon/medarot-s-query-tools/raw/main/medarot-s.db
 3) You can now make queries that will appear in the table below.
 4) The queries are based on a stat sum (example: power + heating) so if no stat is selected, will be ordered by model.
 
-# Other
-You might want to download the database and browse it with https://sqlitebrowser.org/ so you can make your own queries there.
+# Want to contribute?
 This project is completely open-source and made for myself and the community, so if you like it and want to support me by either letting me know if there is an error in the data, or want to contribute with more features, it will be appreciated.
+
+# Want to make queries?
+You might want to download the database and browse it with https://sqlitebrowser.org/ so you can make your own queries there without having to get into programming.
+
+# Licensing
+ This project is free software provided under the Free Software Foundation, Inc. <https://fsf.org/>
