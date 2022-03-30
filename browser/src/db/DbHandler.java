@@ -191,7 +191,7 @@ public class DbHandler {
 	 * @return
 	 * @throws IOException
 	 */
-	public DefaultTableModel queryArms(int[] v, Object[] g, Object[] o, Object a_type, Object a_name)
+	public DefaultTableModel queryArms(String armtype, int[] v, Object[] g, Object[] o, Object a_type, Object a_name)
 			throws IOException {
 		this.connect();
 
@@ -222,7 +222,7 @@ public class DbHandler {
 			sql += ") as criteria, ";
 		}
 
-		sql += "model, id, name, armor, success, power, heating, cooldown, hv, gender, ability_type, ability_name, ability, rank_5, obtained FROM right_arm ";
+		sql += "model, id, name, armor, success, power, heating, cooldown, hv, gender, ability_type, ability_name, ability, rank_5, obtained FROM " + armtype;
 
 		System.out.println(a_name + " " + a_type);
 

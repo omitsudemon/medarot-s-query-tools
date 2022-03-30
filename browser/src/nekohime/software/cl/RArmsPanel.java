@@ -387,7 +387,7 @@ public class RArmsPanel extends JPanel {
 						chbx_hv, chbx_nonhv };
 
 				try {
-					DefaultTableModel tableModel = db.queryArms(getCheckedBoxes(jcba), gender_types.toArray(),
+					DefaultTableModel tableModel = db.queryArms(partName, getCheckedBoxes(jcba), gender_types.toArray(),
 							obtain_types.toArray(), comboBox_atypes.getSelectedItem(),
 							comboBox_anames.getSelectedItem());
 					table.setModel(tableModel);
