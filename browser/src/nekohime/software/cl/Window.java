@@ -204,7 +204,7 @@ public class Window {
 		txtrSupBroYou.setText("Sup bro, you can do some browsing here, if you find some bugs or errors in the data, feel free to notify Omitsu or make a pull request in the repository. I hope you enjoy the program!");
 		panel.add(txtrSupBroYou);
 		
-		JLabel lblNewLabel = new JLabel("Mr. Tinpet");
+		JLabel lblNewLabel = new JLabel("Mr. Chinpet");
 		lblNewLabel.setFont(new Font("Consolas", Font.BOLD, 16));
 		lblNewLabel.setBounds(634, 21, 120, 14);
 		panel.add(lblNewLabel);
