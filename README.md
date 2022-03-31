@@ -13,6 +13,8 @@ https://github.com/omitsudemon/medarot-s-query-tools/raw/main/medarot-s.db
 3) You can now make queries that will appear in the table below.
 4) The queries are based on a stat sum (example: power + heating) so if no stat is selected, will be ordered by model.
 
+![medarot-tool](https://user-images.githubusercontent.com/72420807/160952638-9b00159c-5b02-49ed-b196-94b0d93674ff.png)
+
 # Want to contribute?
 This project is completely open-source and made for myself and the community, so if you like it and want to support me by either letting me know if there is an error in the data, or want to contribute with more features, it will be appreciated.
 You can contact me via email (omitsudemon@protonmail.com) or discord (Omitsu#3681).
